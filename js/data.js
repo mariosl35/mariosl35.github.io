@@ -9,7 +9,7 @@ const PROJECTS = [
     slug: "acw",
     name: "A Cleaner World",
     type: "fivem",
-    typeLabel: "FiveM resource",
+    typeLabel: "FiveM resource (legacy)",
     stack: "FiveM · RAGE engine assets",
     technologies: ["FiveM", "RAGE engine assets"],
     status: "dev",
@@ -18,7 +18,7 @@ const PROJECTS = [
     date: "2025-2026",
     version: "v1.2.15",
     repository: "https://github.com/mariosl35/a-cleaner-world",
-    download: "https://github.com/mariosl35/a-cleaner-world/releases/tag/v1.0.0",
+    download: "https://github.com/mariosl35/a-cleaner-world/releases/download/v1.0.0/A_Cleaner_World-v1.0.0-WIP.7z",
     documentation: null,
     preview: null,
     tagline:
@@ -36,6 +36,38 @@ const PROJECTS = [
       doNotClaim: "",
     },
     seed: "a-cleaner-world",
+  },
+  {
+    slug: "cm",
+    name: "Cloud Menu",
+    type: "fivem",
+    typeLabel: "FiveM resource (legacy)",
+    stack: "NativeUI",
+    technologies: ["NativeUI"],
+    status: "stable",
+    statusLabel: "Stable",
+    visibility: "Public",
+    date: "2025-2026",
+    version: "v1.0.0",
+    repository: "https://github.com/mariosl35/cloud_menu/",
+    download: "https://github.com/mariosl35/cloud_menu/releases/download/v1.0.0/Cloud_Menu-v1.0.0.7z",
+    documentation: null,
+    preview: null,
+    tagline: "An in-game cloud selector and configuration menu.",
+    description:
+      "Cloud Menu is a NativeUI-dependent FiveM resource that lets users adjust the cloud settings used by the sky. It is intended to help tailor the look of gameplay footage and screenshots.",
+    features: [
+      "Clear clouds",
+      "Adjust cloud opacity",
+      "Access the available cloud types",
+    ],
+    screenshots: [],
+    notes: {
+      public: "",
+      private: "",
+      doNotClaim: "",
+    },
+    seed: "cloud-menu",
   },
 ];
 
@@ -103,6 +135,20 @@ const TOOLS = [
 ];
 
 const CHANGELOG = [
+  {
+    date: "2026-08-22",
+    tag: "update",
+    title: "Direct project downloads added",
+    body: "Updated A Cleaner World and Cloud Menu to use their direct release downloads. Repository links remain available for verification and source review.",
+    target: null,
+  },
+  {
+    date: "2026-08-22",
+    tag: "addition",
+    title: "Cloud Menu added",
+    body: "Added Cloud Menu as a stable public legacy FiveM resource with its repository and release page.",
+    target: "cm",
+  },
   {
     date: "2026-08-22",
     tag: "fix",
