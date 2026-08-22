@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mariosl357 | dev &amp; creator index</title>
+  <meta name="description" content="mariosl357. FiveM resources, GTA mods, Lua libraries, NUI interfaces, graphics, and developer tools, indexed in one place." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a href="index.html" class="wordmark" aria-label="mariosl357 home">
+        <span class="dot" aria-hidden="true"></span>
+        mariosl357
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Index</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="changelog.html">Log</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="header-status">
+        <span class="pulse" aria-hidden="true"></span>
+        <span data-clock>00:00:00 LOCAL</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-controls="main-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="shell hero">
+      <div class="hero-copy">
+        <span class="eyebrow">System index · est. active</span>
+        <h1>One person, one registry, <em>everything shipped from it.</em></h1>
+        <p>
+          mariosl357 is where I keep FiveM resources, GTA modifications, Lua libraries,
+          NUI interfaces, graphics work, and the tools I build for myself along the way.
+          A working index of what exists, what state it's in, and where to find it.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-solid btn-arrow" href="projects.html">Browse the registry</a>
+          <a class="btn" href="changelog.html">Read the log</a>
+        </div>
+      </div>
+
+      <div class="log-panel" aria-label="Recent activity feed">
+        <div class="log-panel-head">
+          <span>system.log / tail -f</span>
+          <span class="dots"><span></span><span></span><span></span></span>
+        </div>
+        <div class="log-feed" data-log-feed aria-live="polite"></div>
+        <div class="log-panel-foot">
+          <a href="changelog.html">View full changelog →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS (real, computed) ============ -->
+    <div class="shell">
+      <div class="stat-strip" data-stats aria-label="Site statistics"></div>
+    </div>
+
+    <!-- ============ FEATURED REGISTRY ============ -->
+    <section class="shell section">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow dim">Registry / recent entries</span>
+          <h2>What's currently active</h2>
+          <p>A working index of shipped and in-progress projects. Click a row for the full write-up.</p>
+        </div>
+        <a class="text-link" href="projects.html">View all projects →</a>
+      </div>
+
+      <div class="registry">
+        <div class="registry-head-row" aria-hidden="true">
+          <span>#</span>
+          <span>Name</span>
+          <span>Type</span>
+          <span>Stack</span>
+          <span>Status</span>
+          <span></span>
+        </div>
+        <div data-registry-featured></div>
+      </div>
+    </section>
+
+    <!-- ============ TOOLS PREVIEW ============ -->
+    <section class="shell section-tight">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow dim">Utility belt</span>
+          <h2>Tools, in various states of done</h2>
+          <p>Small utilities built to solve my own problems first. Some are live, most aren't yet.</p>
+        </div>
+        <a class="text-link" href="tools.html">View all tools →</a>
+      </div>
+
+      <div class="tools-grid" data-tools-grid></div>
+    </section>
+
+    <!-- ============ ABOUT TEASER ============ -->
+    <section class="shell section">
+      <div class="split">
+        <div>
+          <span class="eyebrow dim">Who's running this</span>
+          <h2 style="margin-top: var(--space-3); font-size: clamp(1.6rem, 3vw, 2.2rem);">mariosl35</h2>
+          <p style="margin-top: var(--space-4); color: var(--text-dim); max-width: 48ch;">
+            Independent developer working mostly inside the FiveM/GTA ecosystem. I make Lua resources,
+            FiveM interfaces, graphics, and tools for the work I do.
+          </p>
+          <a class="text-link" href="about.html" style="margin-top: var(--space-6); display: inline-block;">Read the full about page →</a>
+        </div>
+        <div>
+          <span class="eyebrow dim">Currently working with</span>
+          <ul class="stack-list">
+            <li>Lua</li>
+            <li>FiveM Natives</li>
+            <li>NUI (HTML/CSS)</li>
+            <li>GIMP (image editing)</li>
+            <li>Blender (3D)</li>
+            <li>Content creation</li>
+            <li>Graphics modding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="wordmark"><span class="dot" aria-hidden="true"></span>mariosl357</a>
+          <p>A developer and creator index. FiveM, GTA, Lua, NUI, graphics, and whatever's next.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Index</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="https://github.com/mariosl35" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li>Discord <span class="footer-note">(community coming soon)</span></li>
+            <li><a href="https://www.tiktok.com/@mariosl357" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+            <li><a href="https://www.youtube.com/@mariosl357" target="_blank" rel="noopener noreferrer">YouTube</a> <span class="footer-note">(no uploads yet)</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> mariosl357. Built from scratch, rendered client-side, no tracking.</span>
+        <span>v1.0.8 | planned utilities added</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/registry.js"></script>
+  <script>document.querySelector('[data-year]').textContent = new Date().getFullYear();</script>
+</body>
+</html>

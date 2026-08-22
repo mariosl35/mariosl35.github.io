@@ -1,0 +1,183 @@
+/* ==========================================================================
+   mariosl357 content data
+   Only confirmed information belongs here. Empty arrays are intentional until
+   real tools and changelog entries are documented.
+   ========================================================================== */
+
+const PROJECTS = [
+  {
+    slug: "acw",
+    name: "A Cleaner World",
+    type: "fivem",
+    typeLabel: "FiveM resource",
+    stack: "FiveM · RAGE engine assets",
+    technologies: ["FiveM", "RAGE engine assets"],
+    status: "dev",
+    statusLabel: "In progress",
+    visibility: "Public",
+    date: "2025-2026",
+    version: "v1.2.15",
+    repository: "https://github.com/mariosl35/a-cleaner-world",
+    download: "https://github.com/mariosl35/a-cleaner-world/releases/tag/v1.0.0",
+    documentation: null,
+    preview: null,
+    tagline:
+      "Removes selected visual clutter across the GTA V map, including rubbish, dead weeds, and roadside objects, helping reduce unnecessary world detail and potential performance overhead.",
+    description:
+      "A Cleaner World is a FiveM resource that removes selected unnecessary world objects across Los Santos, San Andreas, Sandy Shores, and other areas of the GTA V map. It focuses on visual clutter such as rubbish, dead weeds, and selected roadside objects that can contribute to unnecessary world detail and performance overhead.",
+    features: [
+      "Removes selected world clutter",
+      "Covers large areas of the GTA V map",
+    ],
+    screenshots: [],
+    notes: {
+      public: "",
+      private: "",
+      doNotClaim: "",
+    },
+    seed: "a-cleaner-world",
+  },
+];
+
+const TOOLS = [
+  {
+    slug: "colorc",
+    name: "Color Converter",
+    status: "live",
+    statusLabel: "Live",
+    summary:
+      "A quick color utility that converts Hex and RGB values into matching HSV and LCh values.",
+    kind: "Utility",
+    stack: "Quality-of-life utility",
+    url: "colorc.html",
+    usable: true,
+    visibility: "Public",
+    notes: "Built to help with everyday color work, not to replace a full color-management tool.",
+  },
+  {
+    slug: "fxman",
+    name: "fxmanifest Generator",
+    status: "exp",
+    statusLabel: "Experimental",
+    summary:
+      "Select a FiveM resource folder, inspect its files, and generate a starting fxmanifest.lua in the browser.",
+    kind: "Web tool",
+    stack: "Browser-side generator",
+    url: "fxman.html",
+    usable: true,
+    visibility: "Public",
+    notes: "The generated manifest is a starting point and still needs a human review before use.",
+  },
+  {
+    slug: "5mri",
+    name: "FiveM Resource Inspector",
+    status: "planned",
+    statusLabel: "Planned",
+    summary: "A planned browser tool for explaining whether a FiveM resource is client-sided, server-sided, standalone, framework-based, or dependent on another resource.",
+    description: "The inspector would examine the files in a selected resource and explain what kind of resource it appears to be, including client and server roles, framework usage, and dependencies such as NativeUI, MenuAPI, or ox_lib.",
+    kind: "Utility / Detector",
+    stack: "FiveM resource analysis",
+    url: null,
+    usable: false,
+    visibility: "Public",
+    builtIn: true,
+    plannedUse: "The user would select a resource folder, then receive an explanation of the detected resource type. This is planned only and does not inspect files yet.",
+    notes: "Explanation only. No detector is implemented.",
+  },
+  {
+    slug: "gtahc",
+    name: "GTA Hash Converter",
+    status: "planned",
+    statusLabel: "Planned",
+    summary: "A planned utility for looking up GTA V model hashes from readable names such as adder.yft and related RAGE asset files.",
+    description: "The converter would accept readable GTA V model and asset names, including YFT and YDR files, then look up the corresponding machine-readable hash for advanced C# and FiveM modding work.",
+    kind: "Utility / Detector",
+    stack: "GTA V and FiveM modding",
+    url: null,
+    usable: false,
+    visibility: "Public",
+    builtIn: true,
+    plannedUse: "The user would provide a file name or asset name, and the tool would explain or return its known GTA hash. Hashes not found in the data set would need to be researched manually.",
+    notes: "Explanation only. No hash lookup is implemented.",
+  },
+];
+
+const CHANGELOG = [
+  {
+    date: "2026-08-21",
+    tag: "addition",
+    title: "Planned utilities added",
+    body: "Added FiveM Resource Inspector and GTA Hash Converter as public planned tools. They are listed as explanation-only placeholders and do not perform detection or conversion yet.",
+    target: null,
+  },
+  {
+    date: "2026-08-20",
+    tag: "addition",
+    title: "A Cleaner World added",
+    body: "Added A Cleaner World as the first confirmed project in the registry. It is an in-progress public FiveM resource focused on removing selected visual clutter from the GTA V map.",
+    target: "acw",
+  },
+  {
+    date: "2026-08-20",
+    tag: "update",
+    title: "Placeholder content removed",
+    body: "Removed fabricated projects, tools, changelog entries, and unused external links. The site now shows only information that has been confirmed.",
+    target: null,
+  },
+  {
+    date: "2026-08-20",
+    tag: "update",
+    title: "Social links and privacy cleanup",
+    body: "Removed the public contact section and Twitter/X placeholder. Confirmed GitHub, TikTok, and YouTube links are now included. Discord stays unlinked until the community is ready.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "update",
+    title: "A Cleaner World links added",
+    body: "Added the public repository and release download page for A Cleaner World.",
+    target: "acw",
+  },
+  {
+    date: "2026-08-21",
+    tag: "addition",
+    title: "Color Converter added",
+    body: "Added an experimental built-in utility for converting between RGB, Hex, HSV, and LCh color values.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "update",
+    title: "Color Converter preview added",
+    body: "Added a live color preview to the converter output and marked the utility as ready to use.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "addition",
+    title: "fxmanifest Generator added",
+    body: "Added an experimental browser-side utility that inspects selected resource files and generates a starting fxmanifest.lua for download.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "update",
+    title: "fxmanifest dependency detection added",
+    body: "The generator now reads selected Lua files for NativeUI and ox_lib usage and adds matching dependency guidance to the generated manifest.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "update",
+    title: "fxmanifest preview added",
+    body: "Added a static resource-folder preview showing the minimal manifest generated for a resource containing only client.lua.",
+    target: null,
+  },
+  {
+    date: "2026-08-21",
+    tag: "update",
+    title: "Existing manifests can now be repaired",
+    body: "The generator now loads an existing fxmanifest.lua, applies safe fixes, shows what changed, and saves the result locally when the browser supports it.",
+    target: null,
+  },
+];

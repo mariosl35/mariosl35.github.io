@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fxmanifest Generator | mariosl357</title>
+  <meta name="description" content="Generate a starting fxmanifest.lua for a FiveM resource in the browser." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a href="index.html" class="wordmark" aria-label="mariosl357 home"><span class="dot" aria-hidden="true"></span>mariosl357</a>
+      <nav class="main-nav" id="main-nav" aria-label="Primary">
+        <ul><li><a href="index.html">Index</a></li><li><a href="projects.html">Projects</a></li><li><a href="tools.html" aria-current="page">Tools</a></li><li><a href="changelog.html">Log</a></li><li><a href="about.html">About</a></li></ul>
+      </nav>
+      <div class="header-status"><span class="pulse" aria-hidden="true"></span><span data-clock>00:00:00 LOCAL</span></div>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="shell page-head">
+      <span class="eyebrow">Utility / fxman</span>
+      <h1>fxmanifest Generator</h1>
+      <p>Choose a FiveM resource folder and generate a starting manifest from the files it contains. Review the result before using it in a resource.</p>
+    </div>
+    <section class="shell section-tight">
+      <div class="manifest-tool">
+        <div class="manifest-panel">
+          <h2>Resource files</h2>
+          <p class="manifest-help">Files stay in your browser. Nothing is uploaded.</p>
+          <label class="manifest-picker" for="resource-files">
+            <span>Choose resource folder</span>
+            <small>Folder selection is supported in modern browsers.</small>
+          </label>
+          <input id="resource-files" class="sr-only" type="file" webkitdirectory multiple data-resource-files />
+          <p class="manifest-file-count" data-file-count>No files selected.</p>
+          <ul class="manifest-detected" data-detected></ul>
+        </div>
+        <div class="manifest-panel">
+          <div class="manifest-heading-row"><h2>Generated manifest</h2><button class="btn" type="button" data-download disabled>Save fxmanifest.lua</button></div>
+          <textarea class="manifest-output" data-manifest-output spellcheck="false" aria-label="Generated fxmanifest.lua" readonly></textarea>
+          <div class="manifest-changes" data-manifest-changes><strong>No file loaded</strong><span>Select a resource folder to inspect or generate a manifest.</span></div>
+          <p class="manifest-warning" data-manifest-warning>Select a folder to generate a starting manifest. Detection is a helper, not a final validation.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell"><div class="footer-grid">
+    <div class="footer-col footer-brand"><a href="index.html" class="wordmark"><span class="dot" aria-hidden="true"></span>mariosl357</a><p>A developer and creator index. FiveM, GTA, Lua, NUI, graphics, and whatever's next.</p></div>
+    <div class="footer-col"><h4>Site</h4><ul><li><a href="index.html">Index</a></li><li><a href="projects.html">Projects</a></li><li><a href="tools.html">Tools</a></li><li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div class="footer-col"><h4>Elsewhere</h4><ul><li><a href="https://github.com/mariosl35" target="_blank" rel="noopener noreferrer">GitHub</a></li><li>Discord <span class="footer-note">(community coming soon)</span></li><li><a href="https://www.tiktok.com/@mariosl357" target="_blank" rel="noopener noreferrer">TikTok</a></li><li><a href="https://www.youtube.com/@mariosl357" target="_blank" rel="noopener noreferrer">YouTube</a> <span class="footer-note">(no uploads yet)</span></li></ul></div>
+  </div><div class="footer-bottom"><span>© <span data-year></span> mariosl357. Built from scratch, rendered client-side, no tracking.</span><span>v1.0.8 | planned utilities added</span></div></div></footer>
+  <script src="js/main.js"></script><script src="js/fxman.js"></script><script>document.querySelector('[data-year]').textContent = new Date().getFullYear();</script>
+</body>
+</html>
