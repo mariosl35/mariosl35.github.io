@@ -19,7 +19,7 @@ const PROJECTS = [
     version: "v1.2.15",
     repository: "https://github.com/mariosl35/a-cleaner-world",
     download: "https://github.com/mariosl35/a-cleaner-world/releases/download/v1.0.0/A_Cleaner_World-v1.0.0-WIP.7z",
-    shareUrl: "https://mariosl35.github.io/projects/acw/",
+    shareUrl: "https://mariosl35.github.io/projects/acw.html",
     documentation: null,
     preview: null,
     tagline:
@@ -52,7 +52,7 @@ const PROJECTS = [
     version: "v1.0.0",
     repository: "https://github.com/mariosl35/cloud_menu/",
     download: "https://github.com/mariosl35/cloud_menu/releases/download/v1.0.0/Cloud_Menu-v1.0.0.7z",
-    shareUrl: "https://mariosl35.github.io/projects/cm/",
+    shareUrl: "https://mariosl35.github.io/projects/cm.html",
     documentation: null,
     preview: null,
     tagline: "An in-game cloud selector and configuration menu.",
@@ -83,7 +83,7 @@ const TOOLS = [
       "A quick color utility that converts Hex and RGB values into matching HSV and LCh values.",
     kind: "Utility",
     stack: "Quality-of-life utility",
-    url: "colorc.html",
+    url: "tools/colorc.html",
     usable: true,
     visibility: "Public",
     notes: "Built to help with everyday color work, not to replace a full color-management tool.",
@@ -97,7 +97,7 @@ const TOOLS = [
       "Select a FiveM resource folder, inspect its files, and generate a starting fxmanifest.lua in the browser.",
     kind: "Web tool",
     stack: "Browser-side generator",
-    url: "fxman.html",
+    url: "tools/fxman.html",
     usable: true,
     visibility: "Public",
     notes: "The generated manifest is a starting point and still needs a human review before use.",
@@ -137,6 +137,20 @@ const TOOLS = [
 ];
 
 const CHANGELOG = [
+  {
+    date: "2026-08-23",
+    tag: "update",
+    title: "Static project and tool pages organized",
+    body: "Moved tool pages into the tools folder and gave each confirmed project its own page inside the projects folder. Share URLs now open the actual project page instead of a redirect screen.",
+    target: null,
+  },
+  {
+    date: "2026-08-23",
+    tag: "addition",
+    title: "Console easter eggs added",
+    body: "The home activity console now accepts a small set of harmless, unlogged commands for visitors who notice it.",
+    target: null,
+  },
   {
     date: "2026-08-23",
     tag: "addition",

@@ -45,7 +45,8 @@
   }
 
   function goToProject(slug) {
-    window.location.href = `project.html?slug=${encodeURIComponent(slug)}`;
+    const project = PROJECTS.find((entry) => entry.slug === slug);
+    window.location.href = project?.shareUrl || `project.html?slug=${encodeURIComponent(slug)}`;
   }
 
   function wireRows(container) {
@@ -148,7 +149,7 @@
   if (toolsGrid) {
     toolsGrid.innerHTML = TOOLS.map(
       (t) => `
-      <article class="tool-card${["colorc.html", "fxman.html"].includes(t.url) ? " tool-card-featured" : ""}">
+      <article class="tool-card${["tools/colorc.html", "tools/fxman.html"].includes(t.url) ? " tool-card-featured" : ""}">
         <div class="tool-head">
           <span class="eyebrow dim">${t.kind}</span>
           <span class="status-pill ${STATUS_CLASS[t.status] || "status-planned"}">${t.statusLabel}</span>
@@ -160,8 +161,8 @@
           <span>/${t.slug}</span>
           ${t.url ? `<a class="text-link" href="${t.url}">Open →</a>` : "<span>-</span>"}
         </div>
-        ${t.url === "colorc.html" ? '<div class="tool-preview" aria-label="Color Converter preview"><span>Preview</span><div class="tool-preview-color" aria-hidden="true"></div><span class="converter-output-label">Hex color</span><output class="tool-preview-input">#7FD99A</output></div>' : ""}
-        ${t.url === "fxman.html" ? '<div class="tool-preview" aria-label="fxmanifest Generator preview"><span>Preview / resource</span><pre class="tool-preview-code">resource/\n└── client.lua\n\nfx_version \'cerulean\'\ngame \'gta5\'\n\nclient_script \'client.lua\'</pre></div>' : ""}
+        ${t.url === "tools/colorc.html" ? '<div class="tool-preview" aria-label="Color Converter preview"><span>Preview</span><div class="tool-preview-color" aria-hidden="true"></div><span class="converter-output-label">Hex color</span><output class="tool-preview-input">#7FD99A</output></div>' : ""}
+        ${t.url === "tools/fxman.html" ? '<div class="tool-preview" aria-label="fxmanifest Generator preview"><span>Preview / resource</span><pre class="tool-preview-code">resource/\n└── client.lua\n\nfx_version \'cerulean\'\ngame \'gta5\'\n\nclient_script \'client.lua\'</pre></div>' : ""}
       </article>`
     ).join("");
   }
@@ -177,7 +178,7 @@
         <div>
           <h3>${c.title}</h3>
           <p>${c.body}</p>
-          ${c.target ? `<a class="cl-target" href="project.html?slug=${c.target}">/${c.target} →</a>` : ""}
+          ${c.target ? `<a class="cl-target" href="projects/${c.target}.html">/${c.target} →</a>` : ""}
         </div>
       </li>`
     ).join("");
@@ -189,6 +190,17 @@
     const entries = CHANGELOG.slice(0, 8);
     let i = 0;
     const lines = [];
+    const consoleLines = [];
+
+    function escapeHTML(value) {
+      return value.replace(/[&<>'"]/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      }[character]));
+    }
 
     function cssClassFor(tag) {
       if (tag === "fix") return "fix";
@@ -203,7 +215,13 @@
             (l) =>
               `<div class="log-line"><span class="t">${l.date}</span> <span class="tag ${cssClassFor(l.tag)}">[${l.tag.toUpperCase()}]</span> ${l.title}</div>`
           )
-          .join("") + '<span class="log-cursor" aria-hidden="true"></span>';
+          .join("") +
+        consoleLines
+          .map((line) => line.kind === "ascii"
+            ? `<pre class="console-ascii">${escapeHTML(line.text)}</pre>`
+            : `<div class="log-line console-${line.kind}">${escapeHTML(line.text)}</div>`)
+          .join("") +
+        '<span class="log-cursor" aria-hidden="true"></span>';
     }
 
     function pushLine() {
@@ -224,6 +242,35 @@
       lines.length = 0;
       entries.forEach((c) => lines.push({ date: c.date, tag: c.tag, title: c.title }));
       renderLines();
+    }
+
+    const consoleInput = document.querySelector("[data-console-input]");
+    if (consoleInput) {
+      consoleInput.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        const rawCommand = consoleInput.value.trim();
+        if (!rawCommand) return;
+        const command = rawCommand.toLowerCase().replace(/\s+/g, " ");
+        consoleLines.push({ kind: "command", text: `$ ${rawCommand}` });
+
+        if (["sudo rm rf/", "sudo rm -rf /", "sudo rm -rf/"].includes(command)) {
+          consoleLines.push({ kind: "response", text: "close request sent. The browser may refuse to close this tab." });
+          renderLines();
+          window.close();
+        } else if (command === "neofetch mariosl35") {
+          consoleLines.push({
+            kind: "ascii",
+            text: "  ░░    ░░\n      ░░\n  ░░    ░░\n\nmariosl357\nsite index / static web\nprojects + tools",
+          });
+          renderLines();
+        } else {
+          consoleLines.push({ kind: "response", text: `command not found: ${rawCommand}` });
+          renderLines();
+        }
+
+        while (consoleLines.length > 4) consoleLines.shift();
+        consoleInput.value = "";
+      });
     }
   }
 })();

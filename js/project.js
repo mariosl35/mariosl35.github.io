@@ -7,7 +7,7 @@
   "use strict";
 
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get("slug");
+  const slug = params.get("slug") || document.body.dataset.projectSlug;
   const project = PROJECTS.find((p) => p.slug === slug);
 
   const root = document.querySelector("[data-project-root]");
@@ -115,11 +115,14 @@
   // other projects (simple "adjacent in registry" list)
   const otherEl = document.querySelector("[data-p-other]");
   if (otherEl) {
+    const projectLink = (entry) => window.location.pathname.includes("/projects/")
+      ? `${entry.slug}.html`
+      : `projects/${entry.slug}.html`;
     const others = PROJECTS.filter((p) => p.slug !== project.slug).slice(0, 3);
     otherEl.innerHTML = others
       .map(
         (p) =>
-          `<li><a class="text-link" href="project.html?slug=${p.slug}">${p.name}</a></li>`
+          `<li><a class="text-link" href="${projectLink(p)}">${p.name}</a></li>`
       )
       .join("");
   }
