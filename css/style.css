@@ -1,5 +1,5 @@
 /* ==========================================================================
-   mariosl357 core stylesheet
+   mariosl35 core stylesheet
    Graphite / green technical system. No frameworks.
    ========================================================================== */
 
@@ -545,7 +545,11 @@ h1, h2, h3, h4 {
 
 .log-feed {
   flex: 1;
-  overflow: hidden;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
   padding: var(--space-4);
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -553,6 +557,9 @@ h1, h2, h3, h4 {
   color: var(--text-dim);
   position: relative;
 }
+.log-feed::-webkit-scrollbar { width: 6px; }
+.log-feed::-webkit-scrollbar-track { background: transparent; }
+.log-feed::-webkit-scrollbar-thumb { background: var(--border-strong); }
 
 .log-line {
   white-space: nowrap;

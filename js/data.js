@@ -1,5 +1,5 @@
 /* ==========================================================================
-   mariosl357 content data
+   mariosl35 content data
    Only confirmed information belongs here. Empty arrays are intentional until
    real tools and changelog entries are documented.
    ========================================================================== */
@@ -137,6 +137,13 @@ const TOOLS = [
 ];
 
 const CHANGELOG = [
+  {
+    date: "2026-08-23",
+    tag: "update",
+    title: "Console and site identity updated",
+    body: "Made the home console scrollable, cleaned up its ASCII output, and changed the site's visible identity to mariosl35.",
+    target: null,
+  },
   {
     date: "2026-08-23",
     tag: "update",

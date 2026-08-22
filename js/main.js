@@ -1,11 +1,34 @@
 /* ==========================================================================
-   mariosl357 shared behavior
+   mariosl35 shared behavior
    Nav toggle, header clock, and the generative thumbnail system used to
    give every project/tool a distinct mark without using stock imagery.
    ========================================================================== */
 
 (function () {
   "use strict";
+
+  // Keep the visible site identity consistent without touching social URLs.
+  const oldName = "mariosl357";
+  const newName = "mariosl35";
+  const textWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (textWalker.nextNode()) textNodes.push(textWalker.currentNode);
+  textNodes.forEach((node) => {
+    if (node.parentElement?.closest("a[href^='http']")) return;
+    node.nodeValue = node.nodeValue
+      .replaceAll(oldName, newName)
+      .replaceAll("v1.2.0 | static folders and console easter egg", "v1.2.1 | console and identity update");
+  });
+  document.querySelectorAll("title, meta[name='description'], meta[property='og:site_name'], meta[property='og:title'], meta[property='og:description'], [aria-label]").forEach((element) => {
+    if (element.tagName === "TITLE") {
+      element.textContent = element.textContent.replaceAll(oldName, newName);
+    }
+    ["content", "aria-label"].forEach((attribute) => {
+      const value = element.getAttribute(attribute);
+      if (value?.includes(oldName)) element.setAttribute(attribute, value.replaceAll(oldName, newName));
+    });
+  });
+  if (document.title.includes(oldName)) document.title = document.title.replaceAll(oldName, newName);
 
   /* ---------- mobile nav ---------- */
   const toggle = document.querySelector(".nav-toggle");

@@ -1,4 +1,4 @@
-/* mariosl357 Color Converter */
+/* mariosl35 Color Converter */
 (function () {
   "use strict";
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   mariosl357 registry, tools, changelog, and stat rendering
+   mariosl35 registry, tools, changelog, and stat rendering
    Reads from PROJECTS / TOOLS / CHANGELOG in data.js.
    ========================================================================== */
 
@@ -260,7 +260,7 @@
         } else if (command === "neofetch mariosl35") {
           consoleLines.push({
             kind: "ascii",
-            text: "  ░░    ░░\n      ░░\n  ░░    ░░\n\nmariosl357\nsite index / static web\nprojects + tools",
+            text: "  ##    ##\n          \n    ++    \n          \n  ##    ##\n\nmariosl35\nsite index / static web\nprojects + tools",
           });
           renderLines();
         } else {
@@ -269,6 +269,7 @@
         }
 
         while (consoleLines.length > 4) consoleLines.shift();
+        renderLines();
         consoleInput.value = "";
       });
     }

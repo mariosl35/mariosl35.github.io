@@ -1,5 +1,5 @@
 /* ==========================================================================
-   mariosl357 project detail renderer
+   mariosl35 project detail renderer
    Reads ?slug= from the URL and renders the matching entry from PROJECTS.
    ========================================================================== */
 
@@ -16,18 +16,18 @@
   if (!project) {
     if (root) root.style.display = "none";
     if (notFound) notFound.style.display = "block";
-    document.title = "Not found | mariosl357";
+    document.title = "Not found | mariosl35";
     return;
   }
 
-  document.title = `${project.name} | mariosl357`;
+  document.title = `${project.name} | mariosl35`;
   const descriptionMeta = document.querySelector("[data-meta-description]");
   if (descriptionMeta) descriptionMeta.setAttribute("content", project.tagline);
   const shareUrl = project.shareUrl || `https://mariosl35.github.io/projects/${project.slug}/`;
   const ogTitle = document.querySelector("[data-meta-og-title]");
   const ogDescription = document.querySelector("[data-meta-og-description]");
   const ogUrl = document.querySelector("[data-meta-og-url]");
-  if (ogTitle) ogTitle.setAttribute("content", `${project.name} | mariosl357`);
+  if (ogTitle) ogTitle.setAttribute("content", `${project.name} | mariosl35`);
   if (ogDescription) ogDescription.setAttribute("content", project.tagline);
   if (ogUrl) ogUrl.setAttribute("content", shareUrl);
   const canonical = document.querySelector('link[rel="canonical"]');

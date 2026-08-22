@@ -1,4 +1,4 @@
-/* mariosl357 fxmanifest Generator */
+/* mariosl35 fxmanifest Generator */
 (function () {
   "use strict";
 
