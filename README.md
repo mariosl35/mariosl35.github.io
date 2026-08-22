@@ -1,4 +1,4 @@
-# mariosl357 | v1.1.0
+# mariosl357 | v1.1.1
 
 A personal developer and creator index for mariosl357. It documents real FiveM resources, GTA V modding work, graphics, experiments, and browser tools. The site uses plain HTML, CSS, and vanilla JavaScript with no build step, framework, backend, or database.
 

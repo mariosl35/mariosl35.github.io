@@ -863,16 +863,15 @@ h1, h2, h3, h4 {
 @media (max-width: 860px) {
   .registry-head-row { display: none; }
   .registry-row {
-    grid-template-columns: 40px minmax(0, 1fr) 32px;
+    grid-template-columns: minmax(0, 1fr) max-content;
     grid-template-areas:
-      "thumb name arrow"
-      "meta meta meta"
-      "stack stack status";
+      "name arrow"
+      "meta meta"
+      "stack status";
     row-gap: var(--space-2);
   }
   .registry-row .idx { display: none; }
   .registry-row .rname { grid-area: name; }
-  .reg-thumb { grid-area: thumb; }
   .reg-arrow { grid-area: arrow; }
   .reg-type { grid-area: meta; }
   .reg-stack { grid-area: stack; }
@@ -1607,7 +1606,7 @@ h1, h2, h3, h4 {
   .log-panel-head > span:first-child { overflow-wrap: anywhere; }
   .log-feed { font-size: 0.7rem; padding: var(--space-3); }
   .registry-row { padding: var(--space-4) var(--space-3); }
-  .registry-row .status-pill { justify-self: start; }
+  .registry-row .status-pill { justify-self: end; }
   .converter-panel,
   .manifest-panel { padding: var(--space-4); }
   .converter-output { grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--space-2); }
