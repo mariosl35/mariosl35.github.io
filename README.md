@@ -1,4 +1,4 @@
-# mariosl357 | v1.1.3
+# mariosl357 | v1.1.4
 
 A personal developer and creator index for mariosl357. It documents real FiveM resources, GTA V modding work, graphics, experiments, and browser tools. The site uses plain HTML, CSS, and vanilla JavaScript with no build step, framework, backend, or database.
 
@@ -11,6 +11,8 @@ project.html       Single project template, rendered from ?slug= in the URL
 tools.html         Tools/utilities grid
 colorc.html        Built-in Color Converter utility
 fxman.html         Built-in fxmanifest Generator
+projects/acw/      Static share page with project-specific Open Graph metadata
+projects/cm/       Static share page with project-specific Open Graph metadata
 changelog.html     Full dated changelog
 about.html         Bio, stack, and principles
 css/style.css      All styles. Tokens are at the top of the file.
@@ -31,6 +33,8 @@ assets/JetBrainsMono/ Self-hosted JetBrains Mono webfont files and license
 Tokens (colors, spacing, type) are defined as CSS custom properties at the top of
 `css/style.css` under `:root`. Fonts are Space Grotesk (display), Inter (body), and
 JetBrains Mono (labels/data), self-hosted from the `assets` folder as `.woff2` files.
+Project share pages provide server-visible metadata for Discord and other link preview
+crawlers, then redirect normal visitors to the dynamic project detail page.
 
 ## Known gaps
 

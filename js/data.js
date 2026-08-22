@@ -19,6 +19,7 @@ const PROJECTS = [
     version: "v1.2.15",
     repository: "https://github.com/mariosl35/a-cleaner-world",
     download: "https://github.com/mariosl35/a-cleaner-world/releases/download/v1.0.0/A_Cleaner_World-v1.0.0-WIP.7z",
+    shareUrl: "https://mariosl35.github.io/projects/acw/",
     documentation: null,
     preview: null,
     tagline:
@@ -51,6 +52,7 @@ const PROJECTS = [
     version: "v1.0.0",
     repository: "https://github.com/mariosl35/cloud_menu/",
     download: "https://github.com/mariosl35/cloud_menu/releases/download/v1.0.0/Cloud_Menu-v1.0.0.7z",
+    shareUrl: "https://mariosl35.github.io/projects/cm/",
     documentation: null,
     preview: null,
     tagline: "An in-game cloud selector and configuration menu.",
@@ -135,6 +137,13 @@ const TOOLS = [
 ];
 
 const CHANGELOG = [
+  {
+    date: "2026-08-23",
+    tag: "addition",
+    title: "Project share pages added",
+    body: "Added clean project share URLs with project-specific Open Graph metadata for Discord and other link previews. The existing dynamic project page remains the full interactive view.",
+    target: null,
+  },
   {
     date: "2026-08-22",
     tag: "update",

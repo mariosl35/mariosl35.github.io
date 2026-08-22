@@ -23,6 +23,15 @@
   document.title = `${project.name} | mariosl357`;
   const descriptionMeta = document.querySelector("[data-meta-description]");
   if (descriptionMeta) descriptionMeta.setAttribute("content", project.tagline);
+  const shareUrl = project.shareUrl || `https://mariosl35.github.io/projects/${project.slug}/`;
+  const ogTitle = document.querySelector("[data-meta-og-title]");
+  const ogDescription = document.querySelector("[data-meta-og-description]");
+  const ogUrl = document.querySelector("[data-meta-og-url]");
+  if (ogTitle) ogTitle.setAttribute("content", `${project.name} | mariosl357`);
+  if (ogDescription) ogDescription.setAttribute("content", project.tagline);
+  if (ogUrl) ogUrl.setAttribute("content", shareUrl);
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute("href", shareUrl);
 
   const setText = (sel, val) => {
     document.querySelectorAll(sel).forEach((el) => {
