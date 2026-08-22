@@ -11,16 +11,26 @@
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".main-nav");
   if (toggle && nav) {
+    const closeNav = () => {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    };
     toggle.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", String(open));
     });
     nav.querySelectorAll("a").forEach((a) =>
-      a.addEventListener("click", () => {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      })
+      a.addEventListener("click", closeNav)
     );
+    document.addEventListener("click", (event) => {
+      if (nav.classList.contains("open") && !nav.contains(event.target) && !toggle.contains(event.target)) closeNav();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeNav();
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 860) closeNav();
+    });
   }
 
   /* ---------- header clock (local system time, UTC offset shown) ---------- */

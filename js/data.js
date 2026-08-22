@@ -104,6 +104,13 @@ const TOOLS = [
 
 const CHANGELOG = [
   {
+    date: "2026-08-22",
+    tag: "update",
+    title: "Mobile layout pass",
+    body: "Reworked the responsive layout across the site for phone and tablet widths. Navigation, registry rows, controls, cards, project details, changelog entries, and footer sections now reflow for touch use without changing the desktop direction.",
+    target: null,
+  },
+  {
     date: "2026-08-21",
     tag: "addition",
     title: "Planned utilities added",
