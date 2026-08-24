@@ -257,7 +257,7 @@
           consoleLines.push({ kind: "response", text: "close request sent. The browser may refuse to close this tab." });
           renderLines();
           window.close();
-        } else if (command === "neofetch mariosl35") {
+        } else if (command === "neofetch") {
           consoleLines.push({
             kind: "ascii",
             text: "  ##    ##\n          \n    ++    \n          \n  ##    ##\n\nmariosl35\nsite index / static web\nprojects + tools",

@@ -138,6 +138,13 @@ const TOOLS = [
 
 const CHANGELOG = [
   {
+    date: "2026-08-24",
+    tag: "addition",
+    title: "Discord invite and simpler console command",
+    body: "Added the Discord invite link and changed the home console command from neofetch mariosl35 to neofetch.",
+    target: null,
+  },
+  {
     date: "2026-08-23",
     tag: "update",
     title: "Console and site identity updated",

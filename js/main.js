@@ -17,7 +17,8 @@
     if (node.parentElement?.closest("a[href^='http']")) return;
     node.nodeValue = node.nodeValue
       .replaceAll(oldName, newName)
-      .replaceAll("v1.2.0 | static folders and console easter egg", "v1.2.1 | console and identity update");
+      .replaceAll("v1.2.0 | static folders and console easter egg", "v1.2.2 | Discord invite and console update")
+      .replaceAll("v1.2.1 | console and identity update", "v1.2.2 | Discord invite and console update");
   });
   document.querySelectorAll("title, meta[name='description'], meta[property='og:site_name'], meta[property='og:title'], meta[property='og:description'], [aria-label]").forEach((element) => {
     if (element.tagName === "TITLE") {
@@ -29,6 +30,16 @@
     });
   });
   if (document.title.includes(oldName)) document.title = document.title.replaceAll(oldName, newName);
+
+  document.querySelectorAll(".footer-col li").forEach((item) => {
+    if (!/^Discord\s/.test(item.textContent.trim()) || item.querySelector("a")) return;
+    item.replaceChildren(Object.assign(document.createElement("a"), {
+      href: "https://discord.gg/AC5u34SuJ2",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      textContent: "Discord",
+    }));
+  });
 
   /* ---------- mobile nav ---------- */
   const toggle = document.querySelector(".nav-toggle");
