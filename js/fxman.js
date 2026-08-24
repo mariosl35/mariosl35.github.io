@@ -15,6 +15,21 @@
   const listFiles = (files, extension) => files.filter((file) => file.toLowerCase().endsWith(extension));
   const quoteList = (items) => items.map((item) => `    '${item}'`).join(",\n");
   const hasLine = (text, pattern) => new RegExp(pattern, "im").test(text);
+  const vehicleMetaTypes = {
+    "vehicles.meta": "VEHICLE_METADATA_FILE",
+    "carvariations.meta": "VEHICLE_VARIATION_FILE",
+    "handling.meta": "HANDLING_FILE",
+    "vehiclelayouts.meta": "VEHICLE_LAYOUTS_FILE",
+    "carcols.meta": "CARCOLS_FILE",
+    "dlctext.meta": "DLC_TEXT_FILE",
+    "contentunlocks.meta": "CONTENT_UNLOCKING_META_FILE",
+    "shop_vehicle.meta": "VEHICLE_SHOP_DLC_FILE",
+  };
+  const metaTypeForPath = (path) => {
+    const name = path.split("/").pop().toLowerCase();
+    const key = Object.keys(vehicleMetaTypes).find((candidate) => name === candidate || name.endsWith(candidate));
+    return key ? vehicleMetaTypes[key] : null;
+  };
 
   function detect(paths, source) {
     const lua = listFiles(paths, ".lua");
@@ -25,6 +40,11 @@
     const css = paths.filter((path) => /\.css$/i.test(path));
     const js = paths.filter((path) => /\.js$/i.test(path));
     const assets = paths.filter((path) => /(^|\/)(stream|assets?)(\/|$)/i.test(path));
+    const ymap = paths.filter((path) => /(^|\/)stream\/.*\.ymap$/i.test(path));
+    const ytyp = paths.filter((path) => /(^|\/)stream\/.*\.ytyp$/i.test(path));
+    const meta = paths.filter((path) => /\.meta$/i.test(path));
+    const vehicleMeta = meta.filter((path) => metaTypeForPath(path));
+    const vehicle = vehicleMeta.some((path) => path.split("/").pop().toLowerCase() === "vehicles.meta");
     const ui = html.find((path) => /(^|\/)(index|main)\.html?$/i.test(path)) || html[0];
     return {
       lua,
@@ -35,6 +55,11 @@
       css,
       js,
       assets,
+      ymap,
+      ytyp,
+      meta,
+      vehicleMeta,
+      vehicle,
       ui,
       manifest: paths.find((path) => /(^|\/)fxmanifest\.lua$/i.test(path)),
       nativeUI: /\bNativeUI\s*\./i.test(source),
@@ -49,8 +74,24 @@
     return lines;
   }
 
+  function dataFileLines(groups) {
+    const lines = [];
+    if (groups.ymap.length) lines.push("this_is_a_ymap 'yes'", "");
+    groups.ytyp.forEach((path) => lines.push(`data_file 'DLC_ITYP_REQUEST' '${path}'`));
+    groups.vehicleMeta.forEach((path) => {
+      lines.push(`data_file '${metaTypeForPath(path)}' '${path}'`);
+    });
+    if (groups.meta.length) {
+      lines.push("", "files {", quoteList(groups.meta), "}");
+    } else if (groups.ytyp.length) {
+      lines.push("", "files {", "    'common/*.meta'", "}");
+    }
+    if (groups.ytyp.length || groups.vehicleMeta.length || groups.meta.length) lines.push("");
+    return lines;
+  }
+
   function freshManifest(groups) {
-    const lines = ["fx_version 'cerulean'", "game 'gta5'", "", ...dependencyLines(groups)];
+    const lines = ["fx_version 'cerulean'", "game 'gta5'", "", ...dependencyLines(groups), ...dataFileLines(groups)];
     if (groups.shared.length) lines.push("shared_scripts {", quoteList(groups.shared), "}", "");
     if (groups.client.length === 1 && groups.client[0] === "client.lua" && !groups.shared.length && !groups.server.length) {
       lines.push("client_script 'client.lua'", "");
@@ -89,6 +130,32 @@
       text += `${text.endsWith("\n") ? "" : "\n"}\ndependency 'ox_lib'\nshared_script '@ox_lib/init.lua'`;
       changes.push("Added the ox_lib dependency and init script.");
     }
+    if (groups.ymap.length && !hasLine(text, "^\\s*this_is_a_ymap\\s+['\"]yes['\"]")) {
+      text += `${text.endsWith("\n") ? "" : "\n"}\nthis_is_a_ymap 'yes'`;
+      changes.push("Added the YMAP resource flag.");
+    }
+    groups.ytyp.forEach((path) => {
+      const escapedPath = path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      if (!hasLine(text, `DLC_ITYP_REQUEST['\"]?\\s+['\"]${escapedPath}['\"]`)) {
+        text += `${text.endsWith("\n") ? "" : "\n"}\ndata_file 'DLC_ITYP_REQUEST' '${path}'`;
+        changes.push(`Added the YTYP data file for ${path}.`);
+      }
+    });
+    if (groups.ytyp.length && !groups.meta.length && !/common\/\*\.meta/i.test(text)) {
+      text += `${text.endsWith("\n") ? "" : "\n"}\nfiles {\n    'common/*.meta'\n}`;
+      changes.push("Added a common/*.meta file pattern because a YTYP was detected.");
+    }
+    groups.vehicleMeta.forEach((path) => {
+      const type = metaTypeForPath(path);
+      if (!type || new RegExp(`data_file\\s+['\"]${type}['\"]`, "i").test(text)) return;
+      text += `${text.endsWith("\n") ? "" : "\n"}\ndata_file '${type}' '${path}'`;
+      changes.push(`Added ${type} for ${path}.`);
+    });
+    const missingMeta = groups.meta.filter((path) => !text.includes(`'${path}'`));
+    if (missingMeta.length) {
+      text += `${text.endsWith("\n") ? "" : "\n"}\nfiles {\n${quoteList(missingMeta)}\n}`;
+      changes.push("Added the detected .meta files to a files block.");
+    }
     return { text: `${text.trim()}\n`, changes };
   }
 
@@ -99,10 +166,14 @@
       ["Server scripts", groups.server.length],
       ["NUI files", groups.html.length + groups.css.length + groups.js.length],
       ["Assets", groups.assets.length],
+      ["YMAP files", groups.ymap.length],
+      ["YTYP files", groups.ytyp.length],
+      ["Meta files", groups.meta.length],
+      ["Vehicle metadata files", groups.vehicle ? "yes" : "no"],
       ["Existing fxmanifest", groups.manifest ? "yes" : "no"],
       ["NativeUI detected", groups.nativeUI ? "yes" : "no"],
       ["ox_lib detected", groups.oxLib ? "yes" : "no"],
-    ];
+    ].filter(([, value]) => value !== 0 && value !== "no");
     detected.innerHTML = entries.map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`).join("");
     changesEl.innerHTML = changes.length
       ? `<strong>Changes applied</strong>${changes.map((change) => `<span>${change}</span>`).join("")}`
@@ -137,6 +208,10 @@
         ? "NativeUI was detected. If it does not work, remove dependency 'NativeUI' and use client_scripts { '@NativeUI/NativeUI.lua' } instead."
         : groups.oxLib
           ? "ox_lib was detected and added. Review the generated lines before using the file."
+          : groups.ytyp.length
+            ? "A YTYP was detected. A common/*.meta pattern was added as a precaution. Review it and adjust the path if needed."
+            : groups.vehicle
+              ? "Vehicle metadata files were detected and mapped to data_file entries. Review the generated paths before using the file."
           : "Review the generated file before using it. Browser-side detection cannot validate every resource dependency.";
     });
   });

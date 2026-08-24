@@ -139,6 +139,41 @@ const TOOLS = [
 const CHANGELOG = [
   {
     date: "2026-08-24",
+    tag: "fix",
+    title: "Manifest detection panel simplified",
+    body: "Kept content-unlocking metadata handling internal and renamed the visible vehicle row to Vehicle metadata files.",
+    target: null,
+  },
+  {
+    date: "2026-08-24",
+    tag: "fix",
+    title: "Manifest output scrollbar styled",
+    body: "Locked the generated manifest box to its intended size and matched its scrollbar to the graphite and green interface.",
+    target: null,
+  },
+  {
+    date: "2026-08-24",
+    tag: "fix",
+    title: "Prefixed metadata names recognized",
+    body: "Metadata names with prefixes, such as pd458wbcontentunlocks.meta, are now mapped to the correct FiveM data_file type while remaining listed in files.",
+    target: null,
+  },
+  {
+    date: "2026-08-24",
+    tag: "fix",
+    title: "Manifest metadata output corrected",
+    body: "Detected metadata files are now included in a files block, and the detector panel only shows categories that were actually found.",
+    target: null,
+  },
+  {
+    date: "2026-08-24",
+    tag: "addition",
+    title: "Streamed map and vehicle detection added",
+    body: "The fxmanifest generator now recognizes streamed YMAP and YTYP files, applies the required map entries, and maps common vehicle metadata files to their data_file types.",
+    target: null,
+  },
+  {
+    date: "2026-08-24",
     tag: "addition",
     title: "Discord invite and simpler console command",
     body: "Added the Discord invite link and changed the home console command from neofetch mariosl35 to neofetch.",

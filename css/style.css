@@ -1221,7 +1221,9 @@ h1, h2, h3, h4 {
   min-height: 360px;
   margin-top: var(--space-6);
   padding: var(--space-4);
-  resize: vertical;
+  resize: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-inset);
   border: 1px solid var(--border-strong);
   background: var(--bg-inset);
   color: var(--text);
@@ -1229,6 +1231,13 @@ h1, h2, h3, h4 {
   font-size: 0.78rem;
   line-height: 1.6;
 }
+.manifest-output::-webkit-scrollbar { width: 10px; }
+.manifest-output::-webkit-scrollbar-track { background: var(--bg-inset); }
+.manifest-output::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 2px solid var(--bg-inset);
+}
+.manifest-output::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 @media (max-width: 800px) {
   .manifest-tool { grid-template-columns: 1fr; }
   .manifest-heading-row { flex-direction: column; }
