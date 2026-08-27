@@ -16,7 +16,7 @@ const PROJECTS = [
     statusLabel: "In progress",
     visibility: "Public",
     date: "2025-2026",
-    version: "v1.2.15",
+    version: "v1.0.0",
     repository: "https://github.com/mariosl35/a-cleaner-world",
     download: "https://github.com/mariosl35/a-cleaner-world/releases/download/v1.0.0/A_Cleaner_World-v1.0.0-WIP.7z",
     shareUrl: "https://mariosl35.github.io/projects/acw.html",
