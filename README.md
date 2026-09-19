@@ -11,6 +11,7 @@ project.html       Legacy dynamic project fallback, rendered from ?slug= in the 
 projects/acw.html  A Cleaner World project page and share URL
 projects/cm.html   Cloud Menu project page and share URL
 tools.html         Tools/utilities grid
+tools/5mri.html   Built-in FiveM Resource Inspector
 tools/colorc.html  Built-in Color Converter utility
 tools/fxman.html   Built-in fxmanifest Generator
 changelog.html     Full dated changelog
@@ -20,6 +21,7 @@ js/data.js         ALL editable content: PROJECTS, TOOLS, CHANGELOG arrays
 js/main.js         Nav toggle, clock, generative thumbnail system
 js/registry.js     Renders registry rows, tools grid, changelog, stat strip, log ticker
 js/project.js      Renders the individual project page from data.js + the URL slug
+js/5mri.js         Runs the built-in FiveM Resource Inspector
 js/colorc.js       Runs the built-in Color Converter
 js/fxman.js        Runs the built-in fxmanifest Generator
 assets/favicon.svg Site icon
@@ -39,7 +41,7 @@ inside the `tools` folder.
 
 ## Known gaps
 
-- The FiveM Resource Inspector and GTA Hash Converter are planned explanation-only tools.
+- The FiveM Resource Inspector is experimental and uses browser-side heuristics, not a full FiveM runtime.
 - No CMS, build step, or database. This is intentional. If the project list grows
   large enough that hand-editing `data.js` gets unwieldy, that's the point where a small
   build step or headless CMS would start to earn its keep.

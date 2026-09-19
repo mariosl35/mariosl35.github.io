@@ -45,8 +45,11 @@
   }
 
   function goToProject(slug) {
-    const project = PROJECTS.find((entry) => entry.slug === slug);
-    window.location.href = project?.shareUrl || `project.html?slug=${encodeURIComponent(slug)}`;
+    const hasDedicatedPage = PROJECTS.some((entry) => entry.slug === slug && entry.shareUrl);
+    const projectPath = window.location.pathname.includes("/projects/")
+      ? `${slug}.html`
+      : `projects/${slug}.html`;
+    window.location.href = hasDedicatedPage ? projectPath : `project.html?slug=${encodeURIComponent(slug)}`;
   }
 
   function wireRows(container) {
@@ -147,9 +150,10 @@
   /* ---------- tools grid ---------- */
   const toolsGrid = document.querySelector("[data-tools-grid]");
   if (toolsGrid) {
+    const featuredToolUrls = ["tools/colorc.html", "tools/fxman.html", "tools/5mri.html"];
     toolsGrid.innerHTML = TOOLS.map(
       (t) => `
-      <article class="tool-card${["tools/colorc.html", "tools/fxman.html"].includes(t.url) ? " tool-card-featured" : ""}">
+      <article class="tool-card${featuredToolUrls.includes(t.url) ? " tool-card-featured" : ""}">
         <div class="tool-head">
           <span class="eyebrow dim">${t.kind}</span>
           <span class="status-pill ${STATUS_CLASS[t.status] || "status-planned"}">${t.statusLabel}</span>
@@ -163,6 +167,7 @@
         </div>
         ${t.url === "tools/colorc.html" ? '<div class="tool-preview" aria-label="Color Converter preview"><span>Preview</span><div class="tool-preview-color" aria-hidden="true"></div><span class="converter-output-label">Hex color</span><output class="tool-preview-input">#7FD99A</output></div>' : ""}
         ${t.url === "tools/fxman.html" ? '<div class="tool-preview" aria-label="fxmanifest Generator preview"><span>Preview / resource</span><pre class="tool-preview-code">resource/\n└── client.lua\n\nfx_version \'cerulean\'\ngame \'gta5\'\n\nclient_script \'client.lua\'</pre></div>' : ""}
+        ${t.url === "tools/5mri.html" ? '<div class="tool-preview" aria-label="FiveM Resource Inspector preview"><span>Preview / report</span><pre class="tool-preview-code">resource/\n├── fxmanifest.lua\n├── client.lua\n├── server.lua\n└── html/index.html\n\nType: client + server + NUI\nDependencies: ox_lib\nWarnings: 0</pre></div>' : ""}
       </article>`
     ).join("");
   }
