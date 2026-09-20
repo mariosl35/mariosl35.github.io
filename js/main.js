@@ -23,7 +23,8 @@
       .replaceAll("v1.2.3 | fxmanifest asset detection", "v1.2.4 | manifest metadata output")
       .replaceAll("v1.2.4 | manifest metadata output", "v1.2.5 | metadata name matching")
       .replaceAll("v1.2.5 | metadata name matching", "v1.2.6 | manifest box styling")
-      .replaceAll("v1.2.6 | manifest box styling", "v1.2.7 | manifest detection cleanup");
+      .replaceAll("v1.2.6 | manifest box styling", "v1.2.7 | manifest detection cleanup")
+      .replaceAll("v1.2.7 | manifest detection cleanup", "v1.3.1 | FiveM resource inspector");
   });
   document.querySelectorAll("title, meta[name='description'], meta[property='og:site_name'], meta[property='og:title'], meta[property='og:description'], [aria-label]").forEach((element) => {
     if (element.tagName === "TITLE") {

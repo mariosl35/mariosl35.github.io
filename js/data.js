@@ -121,17 +121,38 @@ const TOOLS = [
 
 const CHANGELOG = [
   {
-    date: "2026-09-19",
+    date: "2026-09-20",
     tag: "addition",
-    title: "FiveM Resource Inspector started",
-    body: "Turned the planned inspector into a browser-side tool for scanning resource folders, summarizing detected file roles, dependencies, metadata, and likely setup issues.",
+    title: "FiveM Resource Inspector added",
+    body: "Turned the planned inspector into an experimental browser-side tool for scanning FiveM resource folders, reporting likely resource type, dependencies, metadata, common setup warnings, and copyable results.",
     target: null,
   },
   {
-    date: "2026-09-19",
+    date: "2026-09-20",
+    tag: "update",
+    title: "Inspector preview and standalone detection added",
+    body: "Added a tools-page preview for the inspector and made resources with no detected framework show as likely standalone instead of simply having no dependency result.",
+    target: null,
+  },
+  {
+    date: "2026-09-20",
+    tag: "fix",
+    title: "Project registry links now stay local",
+    body: "Project rows now open the dedicated local project page path, such as projects/cm.html, instead of jumping to the absolute deployed share URL during local browsing.",
+    target: null,
+  },
+  {
+    date: "2026-09-20",
     tag: "update",
     title: "GTA Hash Converter removed from planned tools",
     body: "Removed the planned hash converter placeholder so the tools page stays focused on utilities that are actively useful or being built.",
+    target: null,
+  },
+  {
+    date: "2026-09-20",
+    tag: "update",
+    title: "Site version bumped to v1.3.1",
+    body: "Updated the visible site version for the FiveM Resource Inspector release and related quality-of-life cleanup.",
     target: null,
   },
   {
